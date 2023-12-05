@@ -18,3 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/apprenants',[ApprenantController::class,'index']);
+
+Route::get('/listematiere',[\App\Http\Controllers\matiereController::class,'index']);
