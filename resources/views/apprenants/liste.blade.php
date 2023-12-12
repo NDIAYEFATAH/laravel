@@ -9,7 +9,14 @@
     <title>Document</title>
 </head>
 <body>
+<div>
+{{--    <a href="{{ url('students/new') }}" class="btn btn-primary float-end">Ajouter un Apprenant</a>--}}
+    <a href="{{ route('add-new-student') }}" class="btn btn-primary float-end">Ajouter un Apprenant</a>
+</div>
+<br>
+<br>
 <div class="card">
+
     <div class="card-header bg-success">
         Liste des Apprenants
     </div>

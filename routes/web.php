@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/apprenants',[ApprenantController::class,'index']);
+Route::get('/students',[ApprenantController::class,'index'])->name('students-list');
+Route::get('/students/new',[ApprenantController::class, 'create'])->name('add-new-student');
+Route::post('/students/store',[ApprenantController::class, 'store'])->name('store-student');
 
 Route::get('/listematiere',[\App\Http\Controllers\matiereController::class,'index']);
