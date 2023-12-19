@@ -35,7 +35,7 @@ class ApprenantController extends Controller
                 "nom" => "required",
                 "prenom" => "required",
                 "matricule" => "required",
-                "telephone" => "required"
+                "telephone" => "required|digits:9|numeric",
             ]
         );
 
@@ -46,7 +46,7 @@ class ApprenantController extends Controller
         $apprenant->prenom = $request->input("prenom");
         $apprenant->matricule = $request->input("matricule");
         $apprenant->telephone = $request->input("telephone");*/
-        return to_route('students-list');
+        return to_route('students-list')->with("success","Apprenant ajouté avec succes");
 
     }
     public function update(Request $request, string $id)
@@ -56,7 +56,7 @@ class ApprenantController extends Controller
                 "nom" => "required",
                 "prenom" => "required",
                 "matricule" => "required",
-                "telephone" => "required"
+                "telephone" => "required|digits:9|numeric"
             ]
         );
         Apprenant::find($id)->update($request->all());

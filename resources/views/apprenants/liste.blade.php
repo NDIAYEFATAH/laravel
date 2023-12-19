@@ -14,16 +14,19 @@
 <body>
 
 <div class="container mt-5">
-    <a href="{{ route('add-new-student') }}" class="btn btn-primary float-start">Ajouter Apprenant</a>
+    <a href="{{ route('add-new-student') }}" class="btn btn-secondary float-start">Ajouter Apprenant</a>
     <br>
     <br>
     <div class="card">
         <div class="card-header bg-secondary text-center text-white">
             Liste des Apprenants
         </div>
+        @if(session("success"))
+            <alert class="alert alert-success col-md-12">{{session("success")}}</alert>
+        @endif
         <div class="card-body">
             <table class="table">
-                <thead>
+                <thead class="text-center">
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Nom</th>
@@ -33,7 +36,7 @@
                     <th scope="col">Options</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-center">
                 @foreach($listeApp as $app)
                     <tr>
                         <th scope="row">{{$app->id}}</th>
@@ -42,10 +45,10 @@
                         <td>{{$app->telephone}}</td>
                         <td>{{$app->matricule}}</td>
                         <td>
-                            <div class="d-flex d-flex justify-content-evenly">
+                            <div style="display: inline;">
                                 <a href="{{ route('update-student', $app) }}" class="btn btn-warning">Modifier</a>
-                                <br>
-                                <form action="{{ route('delete-student',$app) }}" method="post">
+
+                                <form id="deleteForm" action="{{ route('delete-student',$app) }}" style="display: inline;" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cet élément ?')">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger">Supprimer</button>
@@ -59,7 +62,9 @@
                 @endif
 
                 </tbody>
+
             </table>
+
         </div>
     </div>
 </div>

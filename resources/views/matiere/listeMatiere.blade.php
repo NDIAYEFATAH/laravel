@@ -13,7 +13,7 @@
 </head>
 <body>
 <div class="container mt-5">
-    <a href="{{ route('add-new-matter') }}" class="btn btn-primary float-start">Ajouter Matiere</a>
+    <a href="{{ route('add-new-matter') }}" class="btn btn-secondary float-start">Ajouter Matiere</a>
     <br>
     <br>
     <div class="card">
@@ -22,7 +22,7 @@
         </div>
         <div class="card-body">
             <table class="table table-sm">
-                <thead>
+                <thead class="text-center">
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Libelle</th>
@@ -30,19 +30,21 @@
                     <th scope="col">Options</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-center">
                 @foreach($listeMat as $mat)
                     <tr>
                         <th scope="row">{{$mat->id}}</th>
                         <td>{{$mat->libelle}}</td>
                         <td>{{$mat->coef}}</td>
                         <td>
-                            <form action="{{ route('delete-matter', $mat) }}" method="post">
-                                @csrf
-                                @method('delete')
-                                <button type="submit" class="btn btn-danger">Supprimer</button>
-                            </form>
-                            <a href="{{ route('edit-matter',$mat) }}" class="btn btn-primary">Modifier</a>
+                            <div style="display: inline;">
+                                <form id="deleteForm" action="{{ route('delete-matter', $mat) }}" style="display: inline;" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cet élément ?')">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                                </form>
+                                <a href="{{ route('edit-matter',$mat) }}" class="btn btn-warning">Modifier</a>
+                            </div>
                         </td>
                     </tr>
                 @endforeach
@@ -55,7 +57,6 @@
         </div>
     </div>
 </div>
-
 
 </body>
 </html>

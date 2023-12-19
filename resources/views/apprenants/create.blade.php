@@ -2,9 +2,9 @@
 @extends('navBar')
 
 @section('content')
-    <div class="col-md-8 offset-3 mt-5">
+    <div class="col-md-8 offset-2 mt-5">
         <div class="card">
-            <div class="card-header bg-success">
+            <div class="card-header bg-secondary">
                 {{$listeApprenants->exists ? "Modifier" : "Ajouter"}} un Apprenant
             </div>
             <div class="card-body">
@@ -41,7 +41,7 @@
                     <div class="form-group">
                         <label for="telephone">Téléphone</label>
                         <input type="number" class="form-control" id="telephone @error("telephone") is-invalid @enderror" name="telephone" value="{{$listeApprenants->telephone ? $listeApprenants->telephone : old('telephone')}}">
-                        @error("telephone")
+                         @error("telephone")
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
