@@ -15,7 +15,8 @@ class ApprenantController extends Controller
     }
     public function create()
     {
-        return view("apprenants.create");
+        $listeApprenants = new Apprenant();
+        return view("apprenants.create",['listeApprenants'=>$listeApprenants]);
     }
 
     public function store(Request $request)
@@ -45,6 +46,33 @@ class ApprenantController extends Controller
         $apprenant->prenom = $request->input("prenom");
         $apprenant->matricule = $request->input("matricule");
         $apprenant->telephone = $request->input("telephone");*/
+        return to_route('students-list');
 
+    }
+    public function update(Request $request, string $id)
+    {
+        $request->validate(
+            [
+                "nom" => "required",
+                "prenom" => "required",
+                "matricule" => "required",
+                "telephone" => "required"
+            ]
+        );
+        Apprenant::find($id)->update($request->all());
+        return to_route('students-list');
+
+    }
+    public function edit(string $id)
+    {
+        $listeApprenants =new Apprenant();
+        return view('apprenants.create',['listeApprenants' => $listeApprenants->find($id)]);
+    }
+
+    public function destroy(string $id)
+    {
+        $apprenant = new Apprenant();
+        $apprenant->find($id)->delete();
+        return to_route('students-list');
     }
 }

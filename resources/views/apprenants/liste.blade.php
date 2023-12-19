@@ -1,4 +1,7 @@
-<!doctype html>
+@extends('navBar')
+
+@section('content')
+    <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,52 +12,59 @@
     <title>Document</title>
 </head>
 <body>
-<div>
-{{--    <a href="{{ url('students/new') }}" class="btn btn-primary float-end">Ajouter un Apprenant</a>--}}
-    <a href="{{ route('add-new-student') }}" class="btn btn-primary float-end">Ajouter un Apprenant</a>
-</div>
-<br>
-<br>
-<div class="card">
 
-    <div class="card-header bg-success">
-        Liste des Apprenants
-    </div>
-    <div class="card-body">
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nom</th>
-                <th scope="col">Prenom</th>
-                <th scope="col">Telephone</th>
-                <th scope="col">Matricule</th>
-                <th scope="col">Options</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($listeApp as $app)
+<div class="container mt-5">
+    <a href="{{ route('add-new-student') }}" class="btn btn-primary float-start">Ajouter Apprenant</a>
+    <br>
+    <br>
+    <div class="card">
+        <div class="card-header bg-secondary text-center text-white">
+            Liste des Apprenants
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
                 <tr>
-                    <th scope="row">{{$app->id}}</th>
-                    <td>{{$app->nom}}</td>
-                    <td>{{$app->prenom}}</td>
-                    <td>{{$app->telephone}}</td>
-                    <td>{{$app->matricule}}</td>
-                    <td>
-                        <button type="submit" class="btn btn-danger">Supprimer</button>
-                        <a href="" class="btn btn-primary">Modifier</a>
-                    </td>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prenom</th>
+                    <th scope="col">Telephone</th>
+                    <th scope="col">Matricule</th>
+                    <th scope="col">Options</th>
                 </tr>
-            @endforeach
-            @if(count($listeApp)==0)
-                <h1>Le tableau est vide</h1>
-            @endif
+                </thead>
+                <tbody>
+                @foreach($listeApp as $app)
+                    <tr>
+                        <th scope="row">{{$app->id}}</th>
+                        <td>{{$app->nom}}</td>
+                        <td>{{$app->prenom}}</td>
+                        <td>{{$app->telephone}}</td>
+                        <td>{{$app->matricule}}</td>
+                        <td>
+                            <div class="d-flex d-flex justify-content-evenly">
+                                <a href="{{ route('update-student', $app) }}" class="btn btn-warning">Modifier</a>
+                                <br>
+                                <form action="{{ route('delete-student',$app) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+                @if(count($listeApp)==0)
+                    <h1>Le tableau est vide</h1>
+                @endif
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
 
 </body>
 </html>
+@endsection

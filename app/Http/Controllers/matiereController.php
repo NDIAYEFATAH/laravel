@@ -21,15 +21,23 @@ class matiereController extends Controller
      */
     public function create()
     {
-        //
+        $listeMatiere = new Matiere();
+        return view('matiere.creatematter',['listeMat' => $listeMatiere]);
     }
+
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+           'libelle' => 'required',
+           'coef' => 'required',
+        ]);
+
+        Matiere::create($request->all());
+        return to_route('list_mat');
     }
 
     /**
@@ -45,7 +53,8 @@ class matiereController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $listeMatiere = new Matiere();
+        return view('matiere.creatematter',['listeMat' => $listeMatiere->find($id)]);
     }
 
     /**
@@ -53,7 +62,13 @@ class matiereController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'libelle' => 'required',
+            'coef' => 'required',
+        ]);
+
+        Matiere::find($id)->update($request->all());
+        return to_route('list_mat');
     }
 
     /**
@@ -61,6 +76,8 @@ class matiereController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $matiere = new  Matiere();
+        $matiere->find($id)->delete();
+        return to_route('list_mat');
     }
 }
