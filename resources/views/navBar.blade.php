@@ -10,10 +10,10 @@
                     <a class="nav-link active text-white" aria-current="page" href="{{route('students-list')}}">Apprenant</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{{route('list_mat')}}">Matiere</a>
+                    <a class="nav-link text-white" href="{{route('matieres.index')}}">Matiere</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Ajouter</a>
+                    <a class="nav-link text-white" href="">Note</a>
 
                 </li>
             </ul>

@@ -9,7 +9,7 @@
                     {{ $listeMat->exists ? "Modifier" : "Ajouter" }} un Matiere
                 </div>
                 <div class="card-body">
-                    <form  action="{{ route($listeMat->exists ? 'update-matter' : 'store-matter',$listeMat) }}"  method="post">
+                    <form  action="{{ route($listeMat->exists ? 'matieres.update' : 'matieres.store',$listeMat) }}"  method="post">
                         @csrf
                         @method($listeMat->exists ? 'put' : 'post')
                         <div class="form-group">

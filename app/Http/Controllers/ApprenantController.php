@@ -35,7 +35,7 @@ class ApprenantController extends Controller
                 "nom" => "required",
                 "prenom" => "required",
                 "matricule" => "required",
-                "telephone" => "required|digits:9|numeric",
+                "telephone" => "required|numeric",
             ]
         );
 

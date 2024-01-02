@@ -13,7 +13,7 @@
 </head>
 <body>
 <div class="container mt-5">
-    <a href="{{ route('add-new-matter') }}" class="btn btn-secondary float-start">Ajouter Matiere</a>
+    <a href="{{ route('matieres.create') }}" class="btn btn-secondary float-start">Ajouter Matiere</a>
     <br>
     <br>
     <div class="card">
@@ -38,12 +38,12 @@
                         <td>{{$mat->coef}}</td>
                         <td>
                             <div style="display: inline;">
-                                <form id="deleteForm" action="{{ route('delete-matter', $mat) }}" style="display: inline;" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cet élément ?')">
+                                <form id="deleteForm" action="{{ route('matieres.destroy',$mat) }}" style="display: inline;" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cet élément ?')">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger">Supprimer</button>
                                 </form>
-                                <a href="{{ route('edit-matter',$mat) }}" class="btn btn-warning">Modifier</a>
+                                <a href="{{ route('matieres.edit',$mat) }}" class="btn btn-warning">Modifier</a>
                             </div>
                         </td>
                     </tr>

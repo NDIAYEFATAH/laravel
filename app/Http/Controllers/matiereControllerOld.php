@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Matiere;
 use Illuminate\Http\Request;
 
-class matiereController extends Controller
+class matiereControllerOld extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -74,10 +74,9 @@ class matiereController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Matiere $matiere)
     {
-        $matiere = new  Matiere();
-        $matiere->find($id)->delete();
+        $matiere->delete();
         return to_route('list_mat');
     }
 }
