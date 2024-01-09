@@ -9,4 +9,9 @@ class Matiere extends Model
 {
     use HasFactory;
     protected $fillable = ["libelle","coef"];
+
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
+    }
 }

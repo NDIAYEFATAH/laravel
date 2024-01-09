@@ -16,7 +16,8 @@ class noteController extends Controller
     {
         $note = Note::all();
         return view('listeNote',['note' => $note,
-            'matiere' => Matiere::all()]);
+            'matiere' => Matiere::all(),
+            'apprenant' => Apprenant::all()]);
     }
 
     /**

@@ -44,6 +44,7 @@
                                     <button type="submit" class="btn btn-danger">Supprimer</button>
                                 </form>
                                 <a href="{{ route('matieres.edit',$mat) }}" class="btn btn-warning">Modifier</a>
+{{--                                <a href="{{ route('matieres.show',$mat) }}" class="btn btn-secondary float-start">Details</a>--}}
                             </div>
                         </td>
                     </tr>

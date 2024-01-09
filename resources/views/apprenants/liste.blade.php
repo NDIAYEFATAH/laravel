@@ -46,16 +46,33 @@
                         <td>{{$app->matricule}}</td>
                         <td>
                             <div style="display: inline;">
-                                <a href="{{ route('update-student', $app) }}" class="btn btn-warning">Modifier</a>
+                                <a href="{{ route('update-student', $app) }}" class="btn btn-outline-secondary">Modifier</a>
 
                                 <form id="deleteForm" action="{{ route('delete-student',$app) }}" style="display: inline;" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cet élément ?')">
                                     @csrf
                                     @method('delete')
-                                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                                    <button type="submit" class="btn btn-outline-secondary">Supprimer</button>
                                 </form>
                             </div>
                         </td>
                     </tr>
+                    @foreach($app->notes as $note)
+                        <tr>
+                            <td></td>
+                            <td colspan="5">
+                                <table class="table mb-0 table-dark">
+
+                                    <tr>
+                                        <td>{{ $note->id }}</td>
+                                        <td>{{ $note->matiere->libelle }}</td>
+                                        <td>devoir</td>
+                                        <td>{{ $note->valeur }}</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    @endforeach
+
                 @endforeach
                 @if(count($listeApp)==0)
                     <h1>Le tableau est vide</h1>

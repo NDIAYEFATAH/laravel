@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Matiere;
 use Illuminate\Http\Request;
 
-class matiereControllerOld extends Controller
+class MatiereController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,19 +25,18 @@ class matiereControllerOld extends Controller
         return view('matiere.creatematter',['listeMat' => $listeMatiere]);
     }
 
-
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
         $request->validate([
-           'libelle' => 'required',
-           'coef' => 'required',
+            'libelle' => 'required',
+            'coef' => 'required',
         ]);
 
         Matiere::create($request->all());
-        return to_route('list_mat');
+        return to_route('matieres.index');
     }
 
     /**
@@ -45,8 +44,7 @@ class matiereControllerOld extends Controller
      */
     public function show(string $id)
     {
-//        $listeMatiere = new Matiere();
-//        return view('matiere.details',['listeMat' => $listeMatiere->find($id)]);
+        //
     }
 
     /**
@@ -69,7 +67,7 @@ class matiereControllerOld extends Controller
         ]);
 
         Matiere::find($id)->update($request->all());
-        return to_route('list_mat');
+        return to_route('matieres.index');
     }
 
     /**
@@ -78,6 +76,6 @@ class matiereControllerOld extends Controller
     public function destroy(Matiere $matiere)
     {
         $matiere->delete();
-        return to_route('list_mat');
+        return to_route('matieres.index');
     }
 }

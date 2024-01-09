@@ -13,8 +13,18 @@ return new class extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
-            $table->integer('devoirs');
-            $table->integer('examen');
+            $table->decimal('valeur')->nullable(false);
+
+            $table->unsignedBigInteger('type_id');
+
+            $table->foreign('type_id')->references('id')->on('sys_type_notes');
+
+
+            $table->foreignId('apprenant_id')->constrained();
+
+            $table->foreignId('matiere_id')->constrained();
+
+
             $table->timestamps();
         });
     }
