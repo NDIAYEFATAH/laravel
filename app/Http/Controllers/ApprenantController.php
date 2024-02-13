@@ -9,7 +9,7 @@ class ApprenantController extends Controller
 {
     public function index()
     {
-        $listeApprenants = Apprenant::all();
+        $listeApprenants = Apprenant::with('notes.matiere')->get();
 //        dd($listeApprenants[0]->notes[0]->matiere);
         return view("apprenants/liste",["listeApp" => $listeApprenants]);
 //        return view("apprenants/liste",compact($listeApprenants));
